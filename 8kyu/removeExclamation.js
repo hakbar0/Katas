@@ -4,4 +4,4 @@ function remove(s) {
   }
   return s;
 }
-console.log(remove("Hi! Hi!"));
+
