@@ -16,3 +16,9 @@ function twoSort(s) {
   });
   return str;
 }
+
+//refactor
+
+function twoSort(s) {
+  return [...s.sort()[0]].join("***");
+}
