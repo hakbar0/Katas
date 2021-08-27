@@ -4,3 +4,6 @@ function repeatStr (n, s, output ="") {
     }
     return output;
   }
+
+  //better solution
+  return s.repeat(n);
