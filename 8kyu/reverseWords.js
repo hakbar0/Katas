@@ -7,3 +7,9 @@ Complete the solution so that it reverses all of the words within the string pas
 function reverseWords(str) {
   return str.split(" ").reverse().join(" ");
 }
+
+//another harde kata
+
+function reverseWords(str) {
+  return str.split("").reverse().join("").split(" ").reverse().join(" ");
+}
