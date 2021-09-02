@@ -1,3 +1,3 @@
 function wordsToSentence(words) {
-    return words.join(' ');
-  }
+  return words.join(" ");
+}

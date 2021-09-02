@@ -1,3 +1,3 @@
-function countSheeps(arrayOfSheep) {  
-    return arrayOfSheep.filter((bool) => bool).length;
-  }
+function countSheeps(arrayOfSheep) {
+  return arrayOfSheep.filter((bool) => bool).length;
+}
