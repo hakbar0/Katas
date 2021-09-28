@@ -1,5 +1,5 @@
 function cubeTimes(times) {
-  let cubeAvg = Number(
+  const cubeAvg = Number(
     (
       times
         .sort((a, b) => a - b)
