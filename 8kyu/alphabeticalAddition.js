@@ -1,7 +1,9 @@
 function addLetters(...letters) {
   if (letters.length === 0) return "z";
   if (letters.length <= 1) return letters.join("");
-  let val = letters.map((x) => x.charCodeAt() - 96).reduce((a, b) => a + b, 0);
+  const val = letters
+    .map((x) => x.charCodeAt() - 96)
+    .reduce((a, b) => a + b, 0);
   return returnLetter(val);
 }
 
