@@ -1,9 +1,6 @@
-function narcissistic(value) {
+const narcissistic = (value) => {
   const str = value.toString();
   const len = str.length;
-  const sum = str
-    .split("")
-    .map((x) => Number(x) ** len)
-    .reduce((a, b) => a + b);
+  const sum = str.split("").reduce((a, b) => a + Number(b) ** len, 0);
   return sum === value ? true : false;
-}
+};
