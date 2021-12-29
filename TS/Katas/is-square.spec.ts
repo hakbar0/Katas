@@ -1,4 +1,3 @@
-import { number } from "yargs";
 import { isSquare } from "./is-square";
 
 describe("maths", () => {
