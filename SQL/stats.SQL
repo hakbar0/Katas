@@ -73,4 +73,3 @@ GROUP  BY first_name,
           last_name
 HAVING Count(DISTINCT year) > 2
 ORDER  BY Avg(salary) DESC; 
-
