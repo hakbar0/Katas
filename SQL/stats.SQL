@@ -73,3 +73,32 @@ GROUP  BY first_name,
           last_name
 HAVING Count(DISTINCT year) > 2
 ORDER  BY Avg(salary) DESC; 
+
+SELECT e.id,
+       e.NAME,
+       r.room_number,
+       r.beds
+FROM   equipment AS e
+       INNER JOIN room AS r
+               ON r.id = e.room_id; 
+
+
+SELECT *
+FROM   student AS s1
+       JOIN student AS s2
+         ON s1.room_id = s2.room_id
+WHERE  s1.NAME = 'Jack Pearson'
+       AND s1.id <> s2.id; 
+
+
+SELECT
+  st1.name,
+  st2.name,
+  room_number
+FROM student st1
+JOIN student st2
+  ON st1.room_id = st2.room_id
+JOIN room
+  ON st1.room_id = room.id
+WHERE st1.name < st2.name
+  AND beds = 2;
