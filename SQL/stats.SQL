@@ -102,3 +102,69 @@ JOIN room
   ON st1.room_id = room.id
 WHERE st1.name < st2.name
   AND beds = 2;
+
+SELECT * FROM CITY
+WHERE AREA = 
+(
+SELECT AREA FROM CITY
+  WHERE name = 'Paris'
+);
+
+SELECT name FROM City
+WHERE Population <
+(
+SELECT Population FROM city
+  WHERE name = 'Madrid'
+);
+
+SELECT * FROM TRIP
+WHERE PRICE > (
+SELECT AVG(PRICE) FROM TRIP
+);
+
+SELECT * FROM Hiking_Trip
+WHERE DIFFICULTY IN (1,2,3);
+
+//Find all information about all trips in cities whose area is greater than 100.
+SELECT * FROM TRIP
+WHERE city_id IN(
+SELECT id FROM city
+  WHERE area > 100
+);
+
+SELECT * FROM City
+WHERE Population < ALL (
+SELECT Population FROM Country
+);
+
+SELECT * FROM TRIP
+WHERE price = ANY( 
+  SELECT PRICE 
+  FROM Hiking_TRIP
+  );
+
+  SELECT * FROM country c
+WHERE population <= 
+(
+SELECT MIN(population) FROM city ct
+  WHERE c.id = ct.country_id 
+);
+
+SELECT * From city c
+WHERE rating > (
+  SELECT AVG(rating) 
+  FROM city new_c
+  WHERE c.country_id = new_c.country_id
+  );
+
+SELECT * FROM Trip
+WHERE city_id IN (
+  SELECT id from city
+  WHERE rating < 4
+  );
+
+SELECT * FROM Country c
+WHERE EXISTS (
+  SELECT * FROM Mountain m 
+  WHERE c.id = m.country_id
+  );
