@@ -168,3 +168,43 @@ WHERE EXISTS (
   SELECT * FROM Mountain m 
   WHERE c.id = m.country_id
   );
+
+  SELECT * FROM Mountain m 
+WHERE NOT EXISTS (
+  SELECT * FROM hiking_trip h
+  WHERE m.id = h.mountain_id
+  );
+  
+  SELECT *
+FROM hiking_trip h
+WHERE length >= ALL (
+  SELECT length
+  FROM hiking_trip s_h
+  WHERE h.mountain_id = s_h.mountain_id);
+
+  SELECT * FROM trip t
+WHERE days  < ANY
+(
+  SELECT days FROM hiking_trip s_h
+  WHERE t.price = s_h.price
+  );
+
+  SELECT * FROM mountain m,
+(SELECT * FROM country 
+ WHERE population > 50000
+ ) AS b_c
+ WHERE m.country_id = b_c.id;
+
+SELECT length, height FROM hiking_trip h,
+(
+SELECT * FROM Mountain
+WHERE height > 3000
+) as big_m
+WHERE big_m.id = h.mountain_id;
+
+SELECT name, 
+(
+SELECT count(*) FROM hiking_trip h
+  WHERE h.mountain_id = m.id
+) as count
+FROM mountain m;
