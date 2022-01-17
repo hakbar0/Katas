@@ -208,3 +208,78 @@ SELECT count(*) FROM hiking_trip h
   WHERE h.mountain_id = m.id
 ) as count
 FROM mountain m;
+
+SELECT * FROM 
+skating Where YEAR 
+BETWEEN 2010 AND 2014
+Union
+SELECT * FROM 
+cycling Where YEAR 
+BETWEEN 2010 AND 2014;
+
+SELECT Person from cycling
+INTERSECT
+SELECT Person from skating;
+
+SELECT country from cycling
+EXCEPT 
+SELECT country from skating;
+
+SELECT year
+FROM skating
+MINUS
+SELECT year
+FROM cycling;
+
+SELECT * FROM horoscope
+WHERE (YEAR BETWEEN 2010 AND 2014)
+AND (SIGN = 'Aquarius' OR SIGN = 'Pisces');
+
+SELECT p.name, p.type, p.year_born as pet_year_born, o.name, o.year_born AS owner_year_born
+FROM PET p
+INNER JOIN 
+OWNER as o on o.id = p.owner_id
+WHERE p.name LIKE 'M%'
+
+SELECT
+  person,
+  COUNT(*) AS number_of_essays,
+  AVG(points) AS avg_points
+FROM essay
+GROUP BY person
+HAVING avg_points > 80;
+
+SELECT * FROM coach
+LEFT JOIN player 
+ON player_id = player.id;
+
+SELECT * FROM PRISON
+WHERE EXISTS (
+  SELECT * FROM 
+  PRISONER 
+  WHERE prison.id = prison_id
+  AND age > 50
+  );
+
+SELECT * FROM gluten_free_product
+INTERSECT
+SELECT * FROM vegetarian_product;
+
+SELECT
+  c.id AS cus_id,
+  c.name AS cus_name,
+  (
+    SELECT MAX(purchase.id)
+    FROM purchase
+    WHERE purchase.customer_id = c.id
+  ) AS latest_purchase_id,
+  (
+    SELECT SUM(quantity)
+    FROM purchase_item
+    WHERE purchase_id IN (
+      SELECT id
+      FROM purchase
+      WHERE customer_id = c.id
+    )
+  ) AS all_items_purchased
+FROM customer AS c;
