@@ -283,3 +283,24 @@ SELECT
     )
   ) AS all_items_purchased
 FROM customer AS c;
+
+SELECT b.title, a.name FROM author a
+JOIN book b
+ON a.id = b.author_id;
+
+SELECT a.name, b.title, b.publish_year FROM author a
+JOIN book b
+ON a.id = b.author_id
+WHERE b.publish_year > 2005;
+
+SELECT b.title as book_title, a.title as adaptation_title, a.release_year, b.publish_year FROM book b
+JOIN adaptation a
+ON b.id = a.book_id
+WHERE ((a.release_year - b.publish_year) <= 4) 
+AND
+b.rating < a.rating;
+
+SELECT b.title, b.rating FROM author a
+INNER JOIN book b
+ON a.id = b.author_id
+WHERE a.death_year IS NULL;
