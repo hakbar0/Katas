@@ -304,3 +304,32 @@ SELECT b.title, b.rating FROM author a
 INNER JOIN book b
 ON a.id = b.author_id
 WHERE a.death_year IS NULL;
+
+SELECT title, name FROM author
+CROSS JOIN book
+WHERE name = 'Ray Henry';
+
+SELECT
+  book.title,
+  publishing_house,
+  adaptation.title,
+  adaptation.type
+FROM book
+LEFT JOIN adaptation
+  ON book.id = adaptation.book_id
+  WHERE type = 'movie';
+
+  SELECT 
+title, publish_year
+FROM book
+LEFT JOIN book_review
+ON book.id = book_review.book_id
+WHERE book_review.book_id IS NULL;
+
+SELECT
+  book.title,
+  author.name
+FROM book
+LEFT JOIN author
+  ON book.author_id = author.id
+  AND (author.birth_year Between 1901 AND 2000);
