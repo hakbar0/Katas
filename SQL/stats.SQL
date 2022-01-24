@@ -333,3 +333,75 @@ FROM book
 LEFT JOIN author
   ON book.author_id = author.id
   AND (author.birth_year Between 1901 AND 2000);
+
+
+  ###### two ways
+  SELECT
+  auction_item.name,
+  bidder.name,
+  final_price
+FROM auction_item
+JOIN bidder
+ON auction_item.id = bidder.bought_item_id
+AND final_price > initial_price;
+
+
+
+SELECT
+  auction_item.name,
+  bidder.name,
+  final_price
+FROM auction_item
+JOIN bidder
+  ON auction_item.id = bidder.bought_item_id
+WHERE final_price > initial_price
+
+
+SELECT  
+  a.name,
+  a.initial_price,
+  b.final_price
+FROM auction_item a
+LEFT JOIN bidder b
+ON a.id = b.bought_item_id
+WHERE a.initial_price > 300
+
+SELECT * FROM auction_item a
+LEFT JOIN bidder b
+ON a.id = b.bought_item_id
+WHERE b.bought_item_id IS NULL;
+
+SELECT
+  product.name,
+  nutrition_data.calories
+FROM product
+JOIN department
+  ON product.department_id = department.id
+JOIN nutrition_data
+  ON nutrition_data.product_id = product.id
+WHERE department.name = 'dairy'
+
+SELECT product.name as product, department.name as department FROM product
+JOIN department
+ON product.department_id = department.id
+JOIN nutrition_data
+ON nutrition_data.product_id = product.id
+WHERE nutrition_data.calories < 150;
+
+SELECT
+  p.shelf_id,
+  p.name,
+  p.price,
+  nd.calories
+FROM product p
+JOIN department d
+  ON p.department_id = d.id
+JOIN nutrition_data nd
+  ON nd.product_id = p.id
+WHERE d.name = 'fruits'
+
+SELECT p.name as product_name, p.price as product_price, d.name as department_name, prod.name as producer_name FROM product p
+JOIN department d
+ON d.id = p.department_id
+JOIN producer prod
+ON p.producer_id = prod.id;
