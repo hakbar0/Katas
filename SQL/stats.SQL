@@ -405,3 +405,39 @@ JOIN department d
 ON d.id = p.department_id
 JOIN producer prod
 ON p.producer_id = prod.id;
+
+SELECT p.title, a.first_name, a.last_name FROM painting p
+JOIN artist a  
+ON a.id = p.artist_id
+WHERE nationality IN('Dutch', 'Flemish');
+
+SELECT first_name,
+       last_name,
+       Avg(rating) AS avg_rating,
+       Min(rating) AS min_rating,
+       Max(rating) AS max_rating
+FROM   artist a
+       JOIN painting p
+         ON a.id = p.artist_id
+GROUP  BY first_name,
+          last_name
+HAVING Count(*) > 2; 
+
+SELECT first_name || ' ' || last_name as NAME from copywriter;
+
+SELECT CONCAT('ID ', id, ' is ', name, '.' ) as sentence from item;
+
+SELECT concat('The copywriter of the slogan with ID ', slogan.id, ' is ' , first_name , ' ' , last_name , '.') as sentence FROM slogan
+JOIN   copywriter
+ON     copywriter.id = copywriter_id;
+
+SELECT id, text, length(text) as text_length from slogan;
+
+SELECT id, lower(text) as text_lowercase from slogan
+WHERE type IN('newspaper ad', 'magazine ad');
+
+SELECT
+  id,
+  name AS old_name,
+  initcap(name) AS new_name
+FROM item;
